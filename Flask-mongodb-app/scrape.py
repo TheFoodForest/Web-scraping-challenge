@@ -7,7 +7,7 @@ import pandas as pd
 
 def init_browser():
     executable_path = {"executable_path": "chromedriver.exe"}
-    return Browser("chrome", **executable_path, headless=False)
+    return Browser("chrome", **executable_path, headless=True)
 
 def scrape():
     #get news data
@@ -26,9 +26,9 @@ def scrape():
     url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
     browser_jpl = init_browser()
     browser_jpl.visit(url)
-    time.sleep(2)
+    time.sleep(1)
     browser_jpl.click_link_by_partial_text('FULL IMAGE')
-    time.sleep(2)
+    time.sleep(1)
     html = browser_jpl.html
     soup = bs(html, 'html.parser')
     browser_jpl.quit()
@@ -40,7 +40,7 @@ def scrape():
     url = 'https://twitter.com/marswxreport?lang=en'
     browser_twit = init_browser()
     browser_twit.visit(url)
-    time.sleep(2)
+    time.sleep(1)
     html = browser_twit.html
     soup = bs(html, 'html.parser')
     browser_twit.quit()
